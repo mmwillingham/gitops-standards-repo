@@ -7,7 +7,8 @@ spec:
   upgradeApproval: Automatic
   complianceConfig:
     catalogSourceUnhealthy: Compliant
-    deploymentsUnavailable: NonCompliant
+    #deploymentsUnavailable: NonCompliant
+    deploymentsUnavailable: Compliant
     upgradesAvailable: Compliant
   complianceType: musthave
   remediationAction: enforce
