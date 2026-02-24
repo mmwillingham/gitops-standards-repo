@@ -6,9 +6,9 @@
 # Prepare environment
 oc login -u <USERNAME> -p <PASSWORD> https://api.<CLUSTER FQDN>:6443
 git clone https://github.com/mmwillingham/gitops-standards-repo.git
-cd gitops-standards-repo.git
-export gitops_repo=https://github.com/mmwillingham/gitops-standards-repo.git
+cd gitops-standards-repo
 export cluster_name=<clustername>
+export gitops_repo=https://github.com/mmwillingham/gitops-standards-repo.git
 export cluster_base_domain=$(oc get ingress.config.openshift.io cluster --template={{.spec.domain}} | sed -e "s/^apps.//")
 export platform_base_domain=${cluster_base_domain#*.}
 
@@ -24,7 +24,7 @@ oc apply -f .bootstrap/cluster-rolebinding.yaml
 sleep 60
 oc get pods -n openshift-gitops
 oc get pods -n openshift-gitops-operator
-oc get argocd -A
+oc get argocd -n openshift-gitops
 envsubst < .bootstrap/argocd.yaml | oc apply -f -
 sleep 30
 oc apply -f .bootstrap/appprojects.yaml
