@@ -9,4 +9,8 @@ resources:
   - ../../apps/acm-operator.yaml
   - ../../apps/acm-configuration.yaml
 
-
+# Virt
+  - ../../apps/openshift-virtualization-operator.yaml
+  - ../../apps/openshift-virtualization-instance.yaml
+  - ../../apps/mtv-operator.yaml
+  - ../../apps/mtv-configuration.yaml
