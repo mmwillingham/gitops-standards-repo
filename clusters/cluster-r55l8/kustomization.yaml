@@ -11,3 +11,4 @@ resources:
 
 # Virt
   - ../../apps/openshift-virtualization-operator.yaml
+  - ../../apps/openshift-virtualization-instance.yaml  
