@@ -10,7 +10,7 @@ metadata:
 spec:
   destination:    
     server: https://kubernetes.default.svc
-  project: default
+  project: hub
   source:
     path: components/acm-configuration
     repoURL: https://github.com/mmwillingham/gitops-standards-repo
