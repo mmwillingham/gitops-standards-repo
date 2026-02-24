@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - far-operator-policy.yaml
-  - nhc-operator-policy.yaml
+# Use subscription instead of OperatorPolicy
+#  - nhc-operator-policy.yaml
+  - nhc-operator.yaml
   - nm-operator-policy.yaml
   - snr-operator-policy.yaml
