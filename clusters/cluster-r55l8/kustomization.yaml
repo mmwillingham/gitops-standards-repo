@@ -13,4 +13,4 @@ resources:
   - ../../apps/openshift-virtualization-operator.yaml
   - ../../apps/openshift-virtualization-instance.yaml  
   - ../../apps/descheduler-operator.yaml
-  - ../../apps/descheduler-instance.yaml 
+  - ../../apps/descheduler-configuration.yaml 
