@@ -1,3 +1,5 @@
+# This repo has been simplifies to use only kustomize.
+
 # GitOps standard folder layout for OpenShift multi-cluster day-two configurations
 
 As the title suggest this standard layout is laser focused on addressing the infrastructure configurations (a.k.a. day-two) for a multi-cluster deployment of OpenShift.
