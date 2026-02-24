@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
 #  - far-operator-policy.yaml
-  - nhc-operator-policy.yaml
+#  - nhc-operator-policy.yaml
   - nm-operator-policy.yaml
   - snr-operator-policy.yaml
