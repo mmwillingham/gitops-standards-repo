@@ -6,6 +6,7 @@ resources:
   - ../../apps/kube-ops-view.yaml
 
 # Hub
-#  - acm.yaml
+  - ../../apps/acm-operator.yaml
+  - ../../apps/acm-configuration.yaml
 
 

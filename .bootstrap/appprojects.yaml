@@ -16,6 +16,26 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
+  name: hub
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'
+  roles:
+  - description: cluster admins get view and sync
+    name: cluster-admin
+    policies:
+    # Format: p, <role>, <resource>, <action>, <project>/<object>, <allow/deny>
+    - p, proj:hub:cluster-admin, applications, *, hub/*, allow
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
   name: virt
 spec:
   clusterResourceWhitelist:
@@ -33,5 +53,4 @@ spec:
     - p, role:developer, applications, get, virt/*, allow
     - p, role:developer, applications, sync, virt/*, allow
     - p, role:developer, projects, get, virt, allow
-
     
