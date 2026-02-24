@@ -10,7 +10,7 @@ metadata:
 spec:
   destination:    
     server: https://kubernetes.default.svc
-  project: hub
+  project: virt
   source:
     path: components/node-health-check-configuration
     repoURL: https://github.com/mmwillingham/gitops-standards-repo
