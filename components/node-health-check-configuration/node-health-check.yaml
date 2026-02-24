@@ -6,7 +6,7 @@ spec:
   remediationTemplate:
     apiVersion: 'fence-agents-remediation.medik8s.io/v1alpha1'
     kind: 'FenceAgentsRemediationTemplate'
-    name: 'main-remediation'
+    name: 'far-template-sandbox'
     namespace: 'openshift-workload-availability'
   unhealthyConditions:
     - duration: 300s
