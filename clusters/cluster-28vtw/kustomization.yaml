@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+# Common
+  - ../../apps/kube-ops-view.yaml
+
+# Hub
+#  - ../../apps/acm-operator.yaml
+#  - ../../apps/acm-configuration.yaml
+
+# Virt
+  - ../../apps/openshift-virtualization-operator.yaml
+  - ../../apps/openshift-virtualization-instance.yaml  
+  - ../../apps/descheduler-operator.yaml
+  - ../../apps/descheduler-configuration.yaml
+  - ../../apps/node-health-check-operator.yaml
+  - ../../apps/node-health-check-configuration.yaml
