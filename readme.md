@@ -16,7 +16,7 @@ export CLUSTER_NAME="cluster-8x88q"
 export PLATFORM_BASE_DOMAIN="8x88q.sandbox232.opentlc.com"
 export CLUSTER_BASE_DOMAIN=$CLUSTER_NAME.$PLATFORM_BASE_DOMAIN
 export USERNAME="kubeadmin"
-export PASSWORD="dEJrn-rcTji-z2uVx-kgpgv"
+export PASSWORD="<redacted>"
 export GITOPS_REPO="https://github.com/mmwillingham/gitops-standards-repo.git"
 export GITOPS_REPO_PATH="gitops-standards-repo"
 EOF
