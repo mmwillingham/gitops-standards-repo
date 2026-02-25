@@ -4,7 +4,7 @@ metadata:
   name: kubevirt-hyperconverged
   namespace: open-cluster-management-policies
 spec:
-  upgradeApproval: Automatic
+  upgradeApproval: Manual
   complianceConfig:
     catalogSourceUnhealthy: Compliant
     deploymentsUnavailable: NonCompliant
@@ -28,8 +28,9 @@ spec:
     namespace: openshift-cnv
     source: redhat-operators
     sourceNamespace: openshift-marketplace
-    startingCSV: kubevirt-hyperconverged-operator.v4.20.3
+    startingCSV: kubevirt-hyperconverged-operator.v4.20.7
   versions: 
+    - kubevirt-hyperconverged-operator.v4.20.7
     - kubevirt-hyperconverged-operator.v4.20.3
     - kubevirt-hyperconverged-operator.v4.17.4
     - kubevirt-hyperconverged-operator.v4.17.5
