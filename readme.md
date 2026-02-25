@@ -1,6 +1,10 @@
 # This repo has been simplified to use only kustomize.
 ## NOTE: This configuration assumes a ArgoCD pull method. i.e. GitOps will be running on each cluster and pulling from repo.
 
+### Prerequisites
+#### Create cluster config folder: ./clusters/<clustername>/kustomization.yaml
+#### Some operators are deployed with OperatorPolicies instead of subscriptions. Operator Policies are part of open-cluster-management. To get these, the cluster needs to be an ACM hub or managed cluster.
+
 # TL/DR
 ```
 # Prepare environment
