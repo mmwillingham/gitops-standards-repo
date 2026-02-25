@@ -15,21 +15,11 @@ cat << EOF > prepare.env
 export CLUSTER_NAME=cluster-8x88q
 export CLUSTER_BASE_DOMAIN=cluster-8x88q.8x88q.sandbox232.opentlc.com
 export USERNAME=kubeadmin
-export PASSWORD=<redacted>
-export REPO=https://github.com/mmwillingham/gitops-standards-repo.git
-export REPO_PATH=gitops-standards-repo
+export PASSWORD=dEJrn-rcTji-z2uVx-kgpgv
+export GITOPS_REPO="https://github.com/mmwillingham/gitops-standards-repo.git"
+export GITOPS_REPO_PATH="gitops-standards-repo"
 # export cluster_base_domain=$(oc get ingress.config.openshift.io cluster --template={{.spec.domain}} | sed -e "s/^apps.//")
 export PLATFORM_BASE_DOMAIN=${CLUSTER_BASE_DOMAIN#*.}
-
-
-# Validate variables
-echo CLUSTER_NAME ${CLUSTER_NAME}
-echo CLUSTER_BASE_DOMAIN ${CLUSTER_BASE_DOMAIN}
-echo USERNAME ${USERNAME}
-echo PASSWORD ${PASSWORD}
-echo REPO ${REPO}
-echo REPO_PATH ${REPO_PATH}
-echo PLATFORM_BASE_DOMAIN ${PLATFORM_BASE_DOMAIN}
 
 # Validate login
 oc login -u ${USERNAME} -p ${PASSWORD} https://api.${CLUSTER_BASE_DOMAIN}:6443
@@ -39,9 +29,19 @@ EOF
 # Execute the sourced file after adjusting with actual values
 source prepare.env
 
+# Validate variables and login
+echo CLUSTER_NAME ${CLUSTER_NAME}
+echo CLUSTER_BASE_DOMAIN ${CLUSTER_BASE_DOMAIN}
+echo USERNAME ${USERNAME}
+echo PASSWORD ${PASSWORD}
+echo GITOPS_REPO ${GITOPS_REPO}
+echo GITOPS_REPO_PATH ${GITOPS_REPO_PATH}
+echo PLATFORM_BASE_DOMAIN ${PLATFORM_BASE_DOMAIN}
+oc whoami
+
 # Clone repo
-git clone ${REPO}
-cd ${REPO_PATH}
+git clone ${GITOPS_REPO}
+cd ${GITOPS_REPO_PATH}
 
 # Install GitOps
 oc apply -f .bootstrap/subscription.yaml
