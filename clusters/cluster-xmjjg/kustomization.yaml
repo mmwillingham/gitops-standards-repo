@@ -10,9 +10,9 @@ resources:
 #  - ../../apps/acm-configuration.yaml
 
 # Virt
-  - ../../apps/openshift-virtualization-operator.yaml
-  - ../../apps/openshift-virtualization-instance.yaml  
-  - ../../apps/descheduler-operator.yaml
-  - ../../apps/descheduler-configuration.yaml
-  - ../../apps/node-health-check-operator.yaml
-  - ../../apps/node-health-check-configuration.yaml
+  # - ../../apps/openshift-virtualization-operator.yaml
+  # - ../../apps/openshift-virtualization-instance.yaml  
+  # - ../../apps/descheduler-operator.yaml
+  # - ../../apps/descheduler-configuration.yaml
+  # - ../../apps/node-health-check-operator.yaml
+  # - ../../apps/node-health-check-configuration.yaml
