@@ -2,25 +2,46 @@
 ## NOTE: This configuration assumes a ArgoCD pull method. i.e. GitOps will be running on each cluster and pulling from repo.
 
 ### Prerequisites
-#### Create cluster config folder: ./clusters/<clustername>/kustomization.yaml
-#### Some operators are deployed with OperatorPolicies instead of subscriptions. Operator Policies are part of open-cluster-management. To get these, the cluster needs to be an ACM hub or managed cluster.
+```
+1. Create cluster config folder: ./clusters/<clustername>/kustomization.yaml
+2. Import cluster into ACM. Some operators are deployed with OperatorPolicies instead of subscriptions. Operator Policies are part of open-cluster-management. To get these, the cluster needs to be an ACM hub or managed cluster.
+```
 
-# TL/DR
+### TL/DR steps
 ```
 # Prepare environment
-oc login -u <USERNAME> -p <PASSWORD> https://api.<CLUSTER FQDN>:6443
-git clone https://github.com/mmwillingham/gitops-standards-repo.git
-cd gitops-standards-repo
-export cluster_name=<clustername>
-export gitops_repo=https://github.com/mmwillingham/gitops-standards-repo.git
-export cluster_base_domain=$(oc get ingress.config.openshift.io cluster --template={{.spec.domain}} | sed -e "s/^apps.//")
-export platform_base_domain=${cluster_base_domain#*.}
+cat << EOF > prepare.env
+# Replace with your values
+export CLUSTER_NAME=cluster-8x88q
+export CLUSTER_BASE_DOMAIN=cluster-8x88q.8x88q.sandbox232.opentlc.com
+export USERNAME=kubeadmin
+export PASSWORD=<redacted>
+export REPO=https://github.com/mmwillingham/gitops-standards-repo.git
+export REPO_PATH=gitops-standards-repo
+# export cluster_base_domain=$(oc get ingress.config.openshift.io cluster --template={{.spec.domain}} | sed -e "s/^apps.//")
+export PLATFORM_BASE_DOMAIN=${CLUSTER_BASE_DOMAIN#*.}
+
 
 # Validate variables
-echo $gitops_repo
-echo $cluster_name
-echo $cluster_base_domain
-echo $platform_base_domain
+echo CLUSTER_NAME ${CLUSTER_NAME}
+echo CLUSTER_BASE_DOMAIN ${CLUSTER_BASE_DOMAIN}
+echo USERNAME ${USERNAME}
+echo PASSWORD ${PASSWORD}
+echo REPO ${REPO}
+echo REPO_PATH ${REPO_PATH}
+echo PLATFORM_BASE_DOMAIN ${PLATFORM_BASE_DOMAIN}
+
+# Validate login
+oc login -u ${USERNAME} -p ${PASSWORD} https://api.${CLUSTER_BASE_DOMAIN}:6443
+
+EOF
+
+# Execute the sourced file after adjusting with actual values
+source prepare.env
+
+# Clone repo
+git clone ${REPO}
+cd ${REPO_PATH}
 
 # Install GitOps
 oc apply -f .bootstrap/subscription.yaml
