@@ -9,34 +9,38 @@
 
 ### TL/DR steps
 ```
-# Prepare environment
+# Prepare environment file (prepare.env)
 cat << EOF > prepare.env
 # Replace with your values
-export CLUSTER_NAME=cluster-8x88q
-export CLUSTER_BASE_DOMAIN=cluster-8x88q.8x88q.sandbox232.opentlc.com
-export USERNAME=kubeadmin
-export PASSWORD=dEJrn-rcTji-z2uVx-kgpgv
+export CLUSTER_NAME="cluster-8x88q"
+#echo $CLUSTER_NAME
+export PLATFORM_BASE_DOMAIN="8x88q.sandbox232.opentlc.com"
+#echo $PLATFORM_BASE_DOMAIN
+export CLUSTER_BASE_DOMAIN=$CLUSTER_NAME.$PLATFORM_BASE_DOMAIN
+#echo $CLUSTER_BASE_DOMAIN
+export USERNAME="kubeadmin"
+export PASSWORD="dEJrn-rcTji-z2uVx-kgpgv"
 export GITOPS_REPO="https://github.com/mmwillingham/gitops-standards-repo.git"
 export GITOPS_REPO_PATH="gitops-standards-repo"
 # export cluster_base_domain=$(oc get ingress.config.openshift.io cluster --template={{.spec.domain}} | sed -e "s/^apps.//")
-export PLATFORM_BASE_DOMAIN=${CLUSTER_BASE_DOMAIN#*.}
-
-# Validate login
-oc login -u ${USERNAME} -p ${PASSWORD} https://api.${CLUSTER_BASE_DOMAIN}:6443
-
+#export PLATFORM_BASE_DOMAIN=${CLUSTER_BASE_DOMAIN#*.}
 EOF
+cat prepare.env
 
-# Execute the sourced file after adjusting with actual values
+# Adjust environment file and execute
 source prepare.env
 
 # Validate variables and login
-echo CLUSTER_NAME ${CLUSTER_NAME}
-echo CLUSTER_BASE_DOMAIN ${CLUSTER_BASE_DOMAIN}
-echo USERNAME ${USERNAME}
-echo PASSWORD ${PASSWORD}
-echo GITOPS_REPO ${GITOPS_REPO}
-echo GITOPS_REPO_PATH ${GITOPS_REPO_PATH}
-echo PLATFORM_BASE_DOMAIN ${PLATFORM_BASE_DOMAIN}
+echo CLUSTER_NAME: ${CLUSTER_NAME}
+echo CLUSTER_BASE_DOMAIN: ${CLUSTER_BASE_DOMAIN}
+echo USERNAME: ${USERNAME}
+echo PASSWORD: ${PASSWORD}
+echo GITOPS_REPO: ${GITOPS_REPO}
+echo GITOPS_REPO_PATH: ${GITOPS_REPO_PATH}
+echo PLATFORM_BASE_DOMAIN: ${PLATFORM_BASE_DOMAIN}
+
+# Validate login
+oc login -u ${USERNAME} -p ${PASSWORD} https://api.${CLUSTER_BASE_DOMAIN}:6443
 oc whoami
 
 # Clone repo
