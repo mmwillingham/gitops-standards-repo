@@ -14,5 +14,5 @@ resources:
   - ../../apps/openshift-virtualization-instance.yaml  
   - ../../apps/descheduler-operator.yaml
   - ../../apps/descheduler-configuration.yaml
-  - ../../apps/node-health-check-operator.yaml
-  - ../../apps/node-health-check-configuration.yaml
+  #- ../../apps/node-health-check-operator.yaml
+  #- ../../apps/node-health-check-configuration.yaml
