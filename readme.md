@@ -9,6 +9,7 @@
 
 ### TL/DR steps
 ```
+
 # Prepare environment file (prepare.env)
 cat << EOF > prepare.env
 # Replace with your values
@@ -44,6 +45,7 @@ git clone ${GITOPS_REPO}
 cd ${GITOPS_REPO_PATH}
 
 # Install GitOps
+# Make sure you have already created clusters/<clustername>
 oc apply -f .bootstrap/subscription.yaml
 oc apply -f .bootstrap/cluster-rolebinding.yaml
 sleep 90
