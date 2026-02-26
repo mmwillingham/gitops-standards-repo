@@ -17,7 +17,7 @@ spec:
     operatorGroups: DeleteIfUnused
     subscriptions: Delete
   severity: medium
-#  operatorGroup: # optional
+#  operatorGroup: # optional. Omitting this enables "All Namespaces", if supported
 #    name: compliance-operator
 #    namespace: openshift-compliance
 #    targetNamespaces:
