@@ -10,7 +10,7 @@ spec:
         revision: HEAD
         # This is the "Smart" part: it only finds folders that have a kustomization
         files:
-          - path: "clusters/*/ */kustomization.yaml"
+          - path: "clusters/*/*/kustomization.yaml"
   template:
     metadata:
       # path[1] is the cluster name (e.g., mycluster)
