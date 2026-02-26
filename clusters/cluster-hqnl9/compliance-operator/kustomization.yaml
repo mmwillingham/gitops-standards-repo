@@ -6,13 +6,17 @@ resources:
   - ../../components/compliance-operator 
 
 patches:
-  - target:
-      kind: OperatorPolicy
-      name: compliance-operator
-    patch: |-
-      - op: replace
-        path: /spec/subscription/channel
-        value: 'stable'
+  - path: patches/compliance-patch.yaml
+
+
+# patches:
+#   - target:
+#       kind: OperatorPolicy
+#       name: compliance-operator
+#     patch: |-
+#       - op: replace
+#         path: /spec/subscription/channel
+#         value: 'stable'
 
 
 # apiVersion: kustomize.config.k8s.io/v1beta1
