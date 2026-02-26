@@ -17,3 +17,12 @@ resources:
   - ../../apps/descheduler-configuration.yaml
   #- ../../apps/node-health-check-operator.yaml
   #- ../../apps/node-health-check-configuration.yaml
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /subscription/channel
+        value: 'stable'
+    target:
+      kind: OperatorPolicy
+      name: compliance-operator

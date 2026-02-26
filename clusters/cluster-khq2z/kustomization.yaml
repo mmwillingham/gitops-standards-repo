@@ -15,3 +15,12 @@ resources:
   - ../../apps/openshift-virtualization-instance.yaml
   - ../../apps/mtv-operator.yaml
   - ../../apps/mtv-configuration.yaml
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /subscription/channel
+        value: 'stable'
+    target:
+      kind: OperatorPolicy
+      name: compliance-operator

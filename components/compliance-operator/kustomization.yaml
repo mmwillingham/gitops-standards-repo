@@ -10,12 +10,3 @@ commonAnnotations:
 resources:
   - namespace.yaml
   - operator-policy.yaml
-
-patches:
-  - patch: |-
-      - op: replace
-        path: /spec/channel
-        value: 'stable'
-    target:
-      kind: OperatorPolicy
-      name: compliance-operator
