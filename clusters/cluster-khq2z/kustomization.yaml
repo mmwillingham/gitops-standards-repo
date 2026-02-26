@@ -19,7 +19,7 @@ resources:
 patches:
   - patch: |-
       - op: replace
-        path: /subscription/channel
+        path: /spec/subscription/channel
         value: 'stable'
     target:
       kind: OperatorPolicy
