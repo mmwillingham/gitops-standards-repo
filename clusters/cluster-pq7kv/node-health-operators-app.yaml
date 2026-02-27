@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: node-healthcheck-operator
+  name: node-health-operators
   namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/sync-wave: "0"  
@@ -15,7 +15,7 @@ spec:
     # path:
     # point to components/<component-name> if nothing needs to be patched
     # point to clusters/<cluster-name>/<component-name> to apply cluster specific patch
-    path: clusters/cluster-pq7kv/node-healthcheck-operators
+    path: clusters/cluster-pq7kv/node-health-operators
   destination:
     server: https://kubernetes.default.svc
     namespace: open-cluster-management-policies
