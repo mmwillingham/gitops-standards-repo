@@ -5,8 +5,14 @@ APP_NAME=$1
 TARGET_CLUSTER_NAME=$2
 TYPE=$3
 
+# 0. Validation
 if [[ -z "$APP_NAME" || -z "$TARGET_CLUSTER_NAME" || -z "$TYPE" ]]; then
     echo "Usage: ./new-app-framework.sh <app-name> <cluster-name> <operator|instance>"
+    exit 1
+fi
+
+if [[ "$TYPE" != "operator" && "$TYPE" != "instance" ]]; then
+    echo "Error: Type must be 'operator' or 'instance'."
     exit 1
 fi
 
@@ -104,6 +110,8 @@ CLUSTER_KUSTOMIZATION="clusters/$TARGET_CLUSTER_NAME/kustomization.yaml"
 if [ -f "$CLUSTER_KUSTOMIZATION" ]; then
     if ! grep -q "$APP_YAML_FILE" "$CLUSTER_KUSTOMIZATION"; then
         echo "Registering $APP_YAML_FILE in $CLUSTER_KUSTOMIZATION..."
+        # The sed command ensures the file ends with a newline before appending
+        sed -i '$a\' "$CLUSTER_KUSTOMIZATION"
         echo "  - $APP_YAML_FILE" >> "$CLUSTER_KUSTOMIZATION"
     fi
 fi
