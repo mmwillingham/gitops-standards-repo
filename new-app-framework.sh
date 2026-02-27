@@ -108,12 +108,26 @@ if [ -f "$CLUSTER_KUSTOMIZATION" ]; then
     fi
 fi
 
+# Determine file name for summary
+if [ "$TYPE" == "operator" ]; then BASE_FILE="operator-policy.yaml"; else BASE_FILE="instance.yaml"; fi
+
 echo "-------------------------------------------------------"
 echo "✅ Scaffolding & Registration Complete!"
 echo "-------------------------------------------------------"
-echo "FILES UPDATED:"
+echo "THE FOLLOWING FILES WERE CREATED/UPDATED:"
 echo "  [Folder] $COMPONENT_DIR"
+echo "  [File]   $COMPONENT_DIR/kustomization.yaml"
+echo "  [File]   $COMPONENT_DIR/namespace.yaml"
+echo "  [File]   $COMPONENT_DIR/$BASE_FILE"
+echo ""
 echo "  [Folder] $TARGET_DIR"
+echo "  [File]   $TARGET_DIR/kustomization.yaml"
+echo "  [File]   $TARGET_DIR/patches/custom-patch.yaml"
+echo ""
 echo "  [File]   $APP_YAML_PATH"
 echo "  [Update] $CLUSTER_KUSTOMIZATION"
 echo "-------------------------------------------------------"
+echo "NEXT STEPS:"
+echo "1. Configure the manifests in $COMPONENT_DIR"
+echo "2. Check your cluster overlay in $TARGET_DIR"
+echo "3. Git push (Registration is already done!)"
