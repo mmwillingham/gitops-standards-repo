@@ -8,8 +8,7 @@ if [ -z "$APP_NAME" ]; then
     exit 1
 fi
 
-# Attempt to identify the cluster folder
-# If CLUSTER_NAME env var isn't set, it looks for the first folder in /clusters
+# Identify the cluster folder
 if [ -z "$CLUSTER_NAME" ]; then
     CLUSTER_NAME=$(ls clusters 2>/dev/null | head -n 1)
     if [ -z "$CLUSTER_NAME" ]; then
@@ -26,7 +25,7 @@ echo "--- Scaffolding $APP_NAME for Cluster: $CLUSTER_NAME ---"
 # 1. Create the local overlay and patches directory
 mkdir -p "$TARGET_DIR/patches"
 
-# 2. Create the local Kustomization (Points to the global component)
+# 2. Create the local Kustomization
 cat <<EOF > "$TARGET_DIR/kustomization.yaml"
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -38,19 +37,20 @@ patches:
   - path: patches/custom-patch.yaml
 EOF
 
-# 3. Create a starter patch file with an example
+# 3. Create a starter patch file with the explicit namespace
+# This namespace MUST match the namespace in the base component
 cat <<EOF > "$TARGET_DIR/patches/custom-patch.yaml"
-# Example Patch for $APP_NAME
-# apiVersion: policy.open-cluster-management.io/v1beta1
-# kind: OperatorPolicy
-# metadata:
-#   name: $APP_NAME
-# spec:
-#   subscription:
-#     channel: stable
+apiVersion: policy.open-cluster-management.io/v1beta1
+kind: OperatorPolicy
+metadata:
+  name: $APP_NAME
+  namespace: open-cluster-management-policies
+spec:
+  subscription:
+    channel: stable
 EOF
 
-# 4. Create the ArgoCD Application Tile (The "App-of-Apps" child)
+# 4. Create the ArgoCD Application Tile (The Child App)
 cat <<EOF > "clusters/$CLUSTER_NAME/$APP_NAME-app.yaml"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -58,7 +58,7 @@ metadata:
   name: $APP_NAME
   namespace: openshift-gitops
 spec:
-  project: cluster-config # Default project
+  project: cluster-config
   source:
     repoURL: $REPO_URL
     targetRevision: HEAD
