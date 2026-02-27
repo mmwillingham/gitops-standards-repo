@@ -8,7 +8,8 @@ spec:
   source:
     repoURL: https://github.com/mmwillingham/gitops-standards-repo
     targetRevision: HEAD
-    path: clusters/cluster-hqnl9 # Points to the cluster "Shopping List"
+#    path: clusters/${CLUSTER_NAME} # Keep in case this gets accidentally overwritten with clustername
+    path: clusters/${CLUSTER_NAME}
   destination:
     server: https://kubernetes.default.svc
     namespace: openshift-gitops
