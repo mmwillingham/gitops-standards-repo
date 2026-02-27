@@ -63,3 +63,18 @@ To onboard a brand new cluster to this framework:
 | Patch not applying | Ensure namespace and kind in the patch match the component exactly. |
 | App pulling wrong cluster's data | Check the 'spec.source.path' in the <app>-app.yaml manifest. |
 | New tile not appearing | Ensure the -app.yaml file is listed in the cluster kustomization. |
+## Troubleshooting Common Issues
+
+### Issue: Operator stuck in 'NonCompliant' or CSV not found
+If the OperatorPolicy reports that the ClusterServiceVersion is missing even after a sync, it is often due to a 'Manual' InstallPlan blocking the OLM.
+
+**Fix:** Force ACM to recreate the subscription with 'Automatic' approval:
+1. oc delete sub <subscription-name> -n <namespace>
+2. oc delete installplan --all -n <namespace>
+
+ACM will automatically recreate these objects within 30 seconds, triggering a fresh (and automatic) installation.
+
+### Issue: Instance fails to sync (CRD not found)
+This is expected if the Operator is still initializing.
+- Check the 'Retry' status in the ArgoCD UI.
+- The Application will self-heal and succeed once the Operator finishes deploying the required CRDs.

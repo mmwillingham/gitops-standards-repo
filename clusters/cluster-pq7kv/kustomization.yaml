@@ -5,5 +5,5 @@ resources:
   - appprojects.yaml
   - compliance-operator-app.yaml
   - external-secrets-operator-app.yaml
-  - openshift-virtualization-instance-app.yaml
-  - openshift-virtualization-operator-app.yaml
+#  - openshift-virtualization-instance-app.yaml
+#  - openshift-virtualization-operator-app.yaml

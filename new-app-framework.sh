@@ -4,7 +4,7 @@
 APP_NAME=$1
 TARGET_CLUSTER_NAME=$2
 TYPE=$3
-WAVE=${4:-0} # Defaults to 0 if not specified
+WAVE=${4:-0}
 
 # 0. Validation
 if [[ -z "$APP_NAME" || -z "$TARGET_CLUSTER_NAME" || -z "$TYPE" ]]; then
@@ -71,8 +71,14 @@ metadata:
   name: $APP_NAME
   namespace: open-cluster-management-policies
 spec:
+  remediationAction: enforce
+  severity: high
+  complianceType: musthave
+  upgradeApproval: Automatic
   subscription:
+    installPlanApproval: Automatic # Force Automatic to avoid manual IP blocks
     channel: stable
+    startingCSV: REPLACE_ME
 EOF
 else
     cat <<EOF > "$TARGET_DIR/patches/custom-patch.yaml"
@@ -86,7 +92,7 @@ data:
 EOF
 fi
 
-# 3. Create the ArgoCD Application Tile (With Wave, Finalizer, and Retry)
+# 3. Create the ArgoCD Application Tile
 cat <<EOF > "$APP_YAML_PATH"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -118,7 +124,7 @@ spec:
         maxDuration: 3m
 EOF
 
-# 4. Automatically register in the cluster's main kustomization
+# 4. Register in main kustomization
 CLUSTER_KUSTOMIZATION="clusters/$TARGET_CLUSTER_NAME/kustomization.yaml"
 if [ -f "$CLUSTER_KUSTOMIZATION" ]; then
     if ! grep -q "$APP_YAML_FILE" "$CLUSTER_KUSTOMIZATION"; then
@@ -137,7 +143,8 @@ echo "-------------------------------------------------------"
 echo "THE FOLLOWING FILES WERE CREATED/UPDATED:"
 echo "  [Folder] $COMPONENT_DIR"
 echo "  [File]   $COMPONENT_DIR/kustomization.yaml"
-echo "  [File]   [File]   $COMPONENT_DIR/$BASE_FILE"
+echo "  [File]   $COMPONENT_DIR/namespace.yaml"
+echo "  [File]   $COMPONENT_DIR/$BASE_FILE"
 echo ""
 echo "  [Folder] $TARGET_DIR"
 echo "  [File]   $TARGET_DIR/kustomization.yaml"
