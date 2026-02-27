@@ -1,4 +1,3 @@
-# clusters/mycluster/patches/compliance-patch.yaml
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy
 metadata:

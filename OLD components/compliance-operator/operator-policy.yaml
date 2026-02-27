@@ -18,7 +18,7 @@ spec:
     operatorGroups: DeleteIfUnused
     subscriptions: Delete
   subscription:
-    channel: CHANNEL # This is the placeholder we will patch
+    channel: PATCHME
     name: compliance-operator
     namespace: openshift-compliance
     source: redhat-operators
