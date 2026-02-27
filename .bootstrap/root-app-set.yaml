@@ -8,21 +8,21 @@ spec:
     - git:
         repoURL: https://github.com/mmwillingham/gitops-standards-repo
         revision: HEAD
-        # This is the "Smart" part: it only finds folders that have a kustomization
-        files:
-          - path: "clusters/*/*/kustomization.yaml"
+        directories:
+          # This forces ArgoCD to look exactly 2 levels deep
+          - path: "clusters/*/*" 
   template:
     metadata:
-      # path[1] is the cluster name (e.g., mycluster)
-      # path[2] is the app name (e.g., compliance-operator)
-      name: '{{path[1]}}-{{path[2]}}'
+      # {{path.basename}} is the app name (e.g., compliance-operator)
+      # {{path[1]}} is the cluster name (e.g., mycluster)
+      name: '{{path[1]}}-{{path.basename}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/mmwillingham/gitops-standards-repo
         targetRevision: HEAD
-        # path[0] is the full directory containing the kustomization
-        path: '{{path[0]}}' 
+        # This is now an absolute directory path from the repo root
+        path: '{{path}}' 
       destination:
         server: https://kubernetes.default.svc
         namespace: openshift-gitops
@@ -30,11 +30,5 @@ spec:
         automated:
           prune: true
           selfHeal: true
-        retry:
-          backoff:
-            duration: 5s
-            factor: 2
-            maxDuration: 3m
-          limit: 5
         syncOptions:
         - CreateNamespace=true

@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-bootstrap
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mmwillingham/gitops-standards-repo
+    targetRevision: HEAD
+    path: .bootstrap  # Point to where your root-app-set.yaml lives
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openshift-gitops
