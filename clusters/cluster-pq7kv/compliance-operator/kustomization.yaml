@@ -5,5 +5,5 @@ resources:
   - ../../../components/compliance-operator
 
 patches:
-  - path: patches/channel-patch.yaml
+  - path: patches/patch-operator-policy
 
