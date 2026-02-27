@@ -26,19 +26,20 @@ echo "--- Scaffolding $APP_NAME for Cluster: $CLUSTER_NAME ---"
 mkdir -p "$TARGET_DIR/patches"
 
 # 2. Create the local Kustomization
+# Note: We REMOVED the global 'namespace:' line to allow multi-namespace apps
 cat <<EOF > "$TARGET_DIR/kustomization.yaml"
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+commonAnnotations:
+  argocd.argoproj.io/sync-wave: "0"
+
 resources:
   - ../../../components/$APP_NAME
-
-patches:
-  - path: patches/custom-patch.yaml
+  - patches/custom-patch.yaml
 EOF
 
-# 3. Create a starter patch file with the explicit namespace
-# This namespace MUST match the namespace in the base component
+# 3. Create a starter patch file with explicit namespace hooks
 cat <<EOF > "$TARGET_DIR/patches/custom-patch.yaml"
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy
@@ -50,7 +51,7 @@ spec:
     channel: stable
 EOF
 
-# 4. Create the ArgoCD Application Tile (The Child App)
+# 4. Create the ArgoCD Application Tile
 cat <<EOF > "clusters/$CLUSTER_NAME/$APP_NAME-app.yaml"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -65,14 +66,14 @@ spec:
     path: $TARGET_DIR
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    # Setting namespace here is just a default; manifest metadata will override it
+    namespace: openshift-gitops 
   syncPolicy:
     automated: { prune: true, selfHeal: true }
 EOF
 
 echo "-------------------------------------------------------"
 echo "✅ Scaffolding Complete!"
-echo "1. Customize your patch at: $TARGET_DIR/patches/custom-patch.yaml"
-echo "2. Register the app in: clusters/$CLUSTER_NAME/kustomization.yaml"
-echo "   Add this line: - $APP_NAME-app.yaml"
+echo "1. Remember: Ensure your base component files define their own namespaces."
+echo "2. Add '- $APP_NAME-app.yaml' to clusters/$CLUSTER_NAME/kustomization.yaml"
 echo "-------------------------------------------------------"

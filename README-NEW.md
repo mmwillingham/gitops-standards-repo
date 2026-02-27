@@ -66,6 +66,7 @@ This repository uses a parent-child relationship to make management easy:
 | New tile not appearing | Ensure the -app.yaml file is listed in the cluster's kustomization.yaml. |
 | Project not found | Ensure appprojects.yaml is listed first in the kustomization.yaml. |
 | Patch not applying (No matches for Id) | Ensure the 'namespace' and 'kind' in your patch match the base component EXACTLY. |
+| Sync Timeout / Namespace Error | DO NOT use a global 'namespace:' in the app's kustomization.yaml. Let the individual manifests define their own namespace. |
 | Component path error | Check the ../../../ path in the app folder's kustomization.yaml. |
 
 ---
