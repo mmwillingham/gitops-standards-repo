@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/mmwillingham/gitops-standards-repo.git
     targetRevision: HEAD
-    path: clusters/cluster-pq7kv/openshift-virtualization-instance
+    path: clusters/components/openshift-virtualization-instance
   destination:
     server: https://kubernetes.default.svc
     namespace: openshift-gitops

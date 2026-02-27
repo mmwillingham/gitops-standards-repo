@@ -8,7 +8,10 @@ spec:
   source:
     repoURL: https://github.com/mmwillingham/gitops-standards-repo
     targetRevision: HEAD
-    path: clusters/cluster-pq7kv/openshift-virtualization-operator
+    # path:
+    # point to components/<component-name> if nothing needs to be patched
+    # point to clusters/<cluster-name>/<component-name> to apply cluster specific patch
+    path: clusters/components/openshift-virtualization-operator
   destination:
     server: https://kubernetes.default.svc
     namespace: openshift-gitops
