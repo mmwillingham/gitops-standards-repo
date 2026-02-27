@@ -17,6 +17,11 @@ spec:
     customResourceDefinitions: Keep
     operatorGroups: DeleteIfUnused
     subscriptions: Delete
+  operatorGroup:
+    name: openshift-virtualization-og
+    namespace: openshift-cnv
+    targetNamespaces:
+      - openshift-cnv    
   subscription:
     channel: stable
     name: kubevirt-hyperconverged
