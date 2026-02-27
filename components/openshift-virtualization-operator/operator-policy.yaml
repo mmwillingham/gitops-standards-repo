@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy
 metadata:
-  name: install-openshift-virtualization-operator
+  name: openshift-virtualization-operator
   namespace: open-cluster-management-policies
 spec:
   remediationAction: enforce

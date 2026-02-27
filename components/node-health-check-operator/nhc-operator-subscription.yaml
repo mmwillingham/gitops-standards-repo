@@ -1,0 +1,24 @@
+---
+# apiVersion: operators.coreos.com/v1
+# kind: OperatorGroup
+# metadata:
+#   name: openshift-workload-availability
+#   namespace: openshift-workload-availability
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: node-healthcheck-operator
+  namespace: openshift-workload-availability
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: node-healthcheck-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  config:
+    env:
+      - name: CONSOLE_PLUGIN_IMAGE
+        value: "" # Setting the image to empty can prevent the plugin pod from starting
+      - name: ENABLE_CONSOLE_PLUGIN
+        value: "false"
