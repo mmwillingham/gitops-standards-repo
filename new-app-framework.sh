@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Usage: ./new-app-framework.sh <app-name> <cluster-name> <type: operator|config>
+# Usage: ./new-app-framework.sh <app-name> <cluster-name> <type: operator|instance>
 APP_NAME=$1
 CLUSTER_NAME=$2
 TYPE=$3
 
 if [[ -z "$APP_NAME" || -z "$CLUSTER_NAME" || -z "$TYPE" ]]; then
-    echo "Usage: ./new-app-framework.sh <app-name> <cluster-name> <operator|config>"
+    echo "Usage: ./new-app-framework.sh <app-name> <cluster-name> <operator|instance>"
     exit 1
 fi
 
