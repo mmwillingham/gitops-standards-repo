@@ -37,7 +37,7 @@ This repository uses OpenShift GitOps (ArgoCD) and Kustomize to manage cluster c
 
 ## Adding a New Cluster
 
-To onboard a brand new cluster to this framework:
+To onboard a new cluster to this framework:
 
 1. ACM Registration: Import the cluster into ACM
 2. Create Directory: mkdir -p clusters/<new-cluster-name> # Alternately, copy/paste from similar cluster
