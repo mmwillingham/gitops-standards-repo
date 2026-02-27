@@ -4,34 +4,29 @@
 APP_NAME=$1
 CLUSTER_NAME=$2
 
-# Check for both arguments
 if [ -z "$APP_NAME" ] || [ -z "$CLUSTER_NAME" ]; then
     echo "Usage: ./new-app-framework.sh <app-name> <cluster-name>"
-    echo "Example: ./new-app-framework.sh compliance-operator cluster-hqnl9"
     exit 1
 fi
 
-# Validation: Ensure the cluster directory exists
 if [ ! -d "clusters/$CLUSTER_NAME" ]; then
     echo "Error: Directory 'clusters/$CLUSTER_NAME' not found."
-    echo "Please create the cluster folder or check your spelling."
     exit 1
 fi
 
 TARGET_DIR="clusters/$CLUSTER_NAME/$APP_NAME"
 COMPONENT_DIR="components/$APP_NAME"
+APP_YAML="clusters/$CLUSTER_NAME/$APP_NAME-app.yaml"
 REPO_URL=$(git config --get remote.origin.url || echo "https://github.com/mmwillingham/gitops-standards-repo")
 
 echo "--- Scaffolding $APP_NAME for Cluster: $CLUSTER_NAME ---"
 
 # 1. Ensure the Component (Base) exists
 if [ ! -d "$COMPONENT_DIR" ]; then
-    echo "Creating new component base at $COMPONENT_DIR..."
     mkdir -p "$COMPONENT_DIR"
     cat <<EOF > "$COMPONENT_DIR/kustomization.yaml"
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
   - namespace.yaml
   - operator-policy.yaml
@@ -40,22 +35,18 @@ EOF
     touch "$COMPONENT_DIR/operator-policy.yaml"
 fi
 
-# 2. Create the Cluster Overlay and patches directory
+# 2. Create the Cluster Overlay
 mkdir -p "$TARGET_DIR/patches"
 
-# 3. Create the local Kustomization (The Overlay)
 cat <<EOF > "$TARGET_DIR/kustomization.yaml"
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
   - ../../../$COMPONENT_DIR
-
 patches:
   - path: patches/custom-patch.yaml
 EOF
 
-# 4. Create a starter patch file
 cat <<EOF > "$TARGET_DIR/patches/custom-patch.yaml"
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy
@@ -67,8 +58,8 @@ spec:
     channel: stable
 EOF
 
-# 5. Create the ArgoCD Application Tile (The Bridge)
-cat <<EOF > "clusters/$CLUSTER_NAME/$APP_NAME-app.yaml"
+# 3. Create the ArgoCD Application Tile
+cat <<EOF > "$APP_YAML"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -89,5 +80,20 @@ EOF
 
 echo "-------------------------------------------------------"
 echo "✅ Scaffolding Complete!"
-echo "Target: clusters/$CLUSTER_NAME/$APP_NAME"
 echo "-------------------------------------------------------"
+echo "THE FOLLOWING FILES WERE CREATED/UPDATED:"
+echo "  [Folder] $COMPONENT_DIR"
+echo "  [File]   $COMPONENT_DIR/kustomization.yaml"
+echo "  [File]   $COMPONENT_DIR/namespace.yaml"
+echo "  [File]   $COMPONENT_DIR/operator-policy.yaml"
+echo ""
+echo "  [Folder] $TARGET_DIR"
+echo "  [File]   $TARGET_DIR/kustomization.yaml"
+echo "  [File]   $TARGET_DIR/patches/custom-patch.yaml"
+echo ""
+echo "  [File]   $APP_YAML"
+echo "-------------------------------------------------------"
+echo "NEXT STEPS:"
+echo "1. Edit the manifests in $COMPONENT_DIR"
+echo "2. Add $APP_NAME-app.yaml to clusters/$CLUSTER_NAME/kustomization.yaml"
+echo "3. Git push"
