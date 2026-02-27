@@ -27,29 +27,29 @@ spec:
     startingCSV: PATCHME
 ---
 # This removes the troublesome plugin
-apiVersion: policy.open-cluster-management.io/v1
-kind: ConfigurationPolicy
-metadata:
-  name: delete-remediation-plugin-resource
-  namespace: open-cluster-management-policies
-spec:
-  remediationAction: enforce 
-  severity: medium
-  object-templates:
-    # 1. This deletes the actual ConsolePlugin object from the cluster
-    - complianceType: mustnothave
-      objectDefinition:
-        apiVersion: console.openshift.io/v1
-        kind: ConsolePlugin
-        metadata:
-          name: node-remediation-console-plugin
-    # 2. This strips the plugin name from the global Console UI list
-    - complianceType: mustnothave
-      objectDefinition:
-        apiVersion: operator.openshift.io/v1
-        kind: Console
-        metadata:
-          name: cluster
-        spec:
-          plugins:
-            - node-remediation-console-plugin    
+# apiVersion: policy.open-cluster-management.io/v1
+# kind: ConfigurationPolicy
+# metadata:
+#   name: delete-remediation-plugin-resource
+#   namespace: open-cluster-management-policies
+# spec:
+#   remediationAction: enforce 
+#   severity: medium
+#   object-templates:
+#     # 1. This deletes the actual ConsolePlugin object from the cluster
+#     - complianceType: mustnothave
+#       objectDefinition:
+#         apiVersion: console.openshift.io/v1
+#         kind: ConsolePlugin
+#         metadata:
+#           name: node-remediation-console-plugin
+#     # 2. This strips the plugin name from the global Console UI list
+#     - complianceType: mustnothave
+#       objectDefinition:
+#         apiVersion: operator.openshift.io/v1
+#         kind: Console
+#         metadata:
+#           name: cluster
+#         spec:
+#           plugins:
+#             - node-remediation-console-plugin    
