@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy
 metadata:
-  name: fence-agents-remediation
+  name: node-maintenance-operator
   namespace: open-cluster-management-policies
 spec:
   upgradeApproval: Automatic
@@ -19,10 +19,10 @@ spec:
   severity: medium
   subscription:
     channel: stable
-    name: fence-agents-remediation
+    name: node-maintenance-operator
     namespace: openshift-workload-availability
     source: redhat-operators
     sourceNamespace: openshift-marketplace
-    startingCSV: fence-agents-remediation.v0.6.0
+    startingCSV: PATCHME
   versions: 
-    - fence-agents-remediation.v0.6.0
+    - node-maintenance-operator.v5.5.0
