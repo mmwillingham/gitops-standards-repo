@@ -36,7 +36,7 @@ spec:
       - customization:
           jsonPointers:
             - /data
-        kind: Secret      
+        kind: Secret
   resourceCustomizations: |
     argoproj.io/Application:
       health.lua: |
@@ -365,6 +365,6 @@ data:
   KUSTOMIZE_PLUGIN_HOME: /etc/kustomize/plugin
   CLUSTER_NAME: '${CLUSTER_NAME}'
   CLUSTER_BASE_DOMAIN: '${CLUSTER_BASE_DOMAIN}'
-          # all created clusters base domain should be <cluster-name>.<PLATFORM_BASE_DOMAIN> 
+          # all created clusters base domain should be <cluster-name>.<PLATFORM_BASE_DOMAIN>
   PLATFORM_BASE_DOMAIN: '${PLATFORM_BASE_DOMAIN}'
-  INFRA_GITOPS_REPO: '${GITOPS_REPO}'        
+  INFRA_GITOPS_REPO: '${GITOPS_REPO}'

@@ -13,7 +13,7 @@ kind: OperatorGroup
 metadata:
   name: openshift-gitops-operator
   namespace: openshift-gitops-operator
-spec: {}    
+spec: {}
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
