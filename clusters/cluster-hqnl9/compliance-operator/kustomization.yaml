@@ -2,11 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  # Point to the actual logic/policy, not the App manifest
-  - ../../components/compliance-operator 
+  - ../../../components/compliance-operator
 
 patches:
-  - path: patches/compliance-patch.yaml
+  - path: patches/channel-patch.yaml
 
 
 # patches:

@@ -57,8 +57,30 @@ sleep 30
 oc apply -f .bootstrap/appprojects.yaml
 
 # Install root-application
-envsubst < .bootstrap/root-application.yaml | oc apply -f -
+#envsubst < .bootstrap/root-application.yaml | oc apply -f -
+
+# 1. Apply the Project first (so the AppSet doesn't error out)
+oc apply -f root-app/appproject.yaml
+
+# 2. Inject the cluster name into the ApplicationSet and apply
+envsubst < root-app/root-app-set.yaml | oc apply -f -
+
+# 3. Apply the Root Application manually
+oc apply -f .bootstrap/root-application.yaml
 
 ```
+####
+New App Checklist for the Customer
+To  add a new application (e.g., logging-operator), follow these 3 steps:
 
+Check for Base: Does components/logging-operator exist? If not, create the base YAML there.
+
+Decide on Patching:
+No Patch? Create clusters/cluster-hqnl9/logging-app.yaml pointing to components/logging-operator.
+
+Need a Patch? Create a folder clusters/cluster-hqnl9/logging-operator/, add a kustomization.yaml and a patches/ folder, then create the logging-app.yaml pointing to that local folder.
+
+Update Shopping List: Add - logging-app.yaml to the resources list in clusters/cluster-hqnl9/kustomization.yaml.
+
+Git Push: Once pushed, ArgoCD will automatically spawn the new tile.
 
