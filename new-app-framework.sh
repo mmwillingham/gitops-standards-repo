@@ -85,13 +85,15 @@ data:
 EOF
 fi
 
-# 3. Create the ArgoCD Application Tile
+# 3. Create the ArgoCD Application Tile (With Finalizer)
 cat <<EOF > "$APP_YAML_PATH"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: $APP_NAME
   namespace: openshift-gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: cluster-config
   source:
@@ -110,7 +112,6 @@ CLUSTER_KUSTOMIZATION="clusters/$TARGET_CLUSTER_NAME/kustomization.yaml"
 if [ -f "$CLUSTER_KUSTOMIZATION" ]; then
     if ! grep -q "$APP_YAML_FILE" "$CLUSTER_KUSTOMIZATION"; then
         echo "Registering $APP_YAML_FILE in $CLUSTER_KUSTOMIZATION..."
-        # The sed command ensures the file ends with a newline before appending
         sed -i '$a\' "$CLUSTER_KUSTOMIZATION"
         echo "  - $APP_YAML_FILE" >> "$CLUSTER_KUSTOMIZATION"
     fi
@@ -135,7 +136,3 @@ echo ""
 echo "  [File]   $APP_YAML_PATH"
 echo "  [Update] $CLUSTER_KUSTOMIZATION"
 echo "-------------------------------------------------------"
-echo "NEXT STEPS:"
-echo "1. Configure the manifests in $COMPONENT_DIR"
-echo "2. Check your cluster overlay in $TARGET_DIR"
-echo "3. Git push (Registration is already done!)"

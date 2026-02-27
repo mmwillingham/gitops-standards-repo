@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: openshift-virtualization-operator
   namespace: openshift-gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io  
 spec:
   project: cluster-config
   source:
