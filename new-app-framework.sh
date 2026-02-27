@@ -1,20 +1,21 @@
 #!/bin/bash
 
-# Usage: ./new-app-framework.sh <app-name>
+# Usage: ./new-app-framework.sh <app-name> <cluster-name>
 APP_NAME=$1
+CLUSTER_NAME=$2
 
-if [ -z "$APP_NAME" ]; then
-    echo "Usage: ./new-app-framework.sh <app-name>"
+# Check for both arguments
+if [ -z "$APP_NAME" ] || [ -z "$CLUSTER_NAME" ]; then
+    echo "Usage: ./new-app-framework.sh <app-name> <cluster-name>"
+    echo "Example: ./new-app-framework.sh compliance-operator cluster-hqnl9"
     exit 1
 fi
 
-# Identify the cluster folder
-if [ -z "$CLUSTER_NAME" ]; then
-    CLUSTER_NAME=$(ls clusters 2>/dev/null | head -n 1)
-    if [ -z "$CLUSTER_NAME" ]; then
-        echo "Error: No folder found in ./clusters/. Please create your cluster directory first."
-        exit 1
-    fi
+# Validation: Ensure the cluster directory exists
+if [ ! -d "clusters/$CLUSTER_NAME" ]; then
+    echo "Error: Directory 'clusters/$CLUSTER_NAME' not found."
+    echo "Please create the cluster folder or check your spelling."
+    exit 1
 fi
 
 TARGET_DIR="clusters/$CLUSTER_NAME/$APP_NAME"
@@ -30,6 +31,7 @@ if [ ! -d "$COMPONENT_DIR" ]; then
     cat <<EOF > "$COMPONENT_DIR/kustomization.yaml"
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
   - namespace.yaml
   - operator-policy.yaml
@@ -41,7 +43,7 @@ fi
 # 2. Create the Cluster Overlay and patches directory
 mkdir -p "$TARGET_DIR/patches"
 
-# 3. Create the local Kustomization
+# 3. Create the local Kustomization (The Overlay)
 cat <<EOF > "$TARGET_DIR/kustomization.yaml"
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -65,7 +67,7 @@ spec:
     channel: stable
 EOF
 
-# 5. Create the ArgoCD Application Tile
+# 5. Create the ArgoCD Application Tile (The Bridge)
 cat <<EOF > "clusters/$CLUSTER_NAME/$APP_NAME-app.yaml"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -87,6 +89,5 @@ EOF
 
 echo "-------------------------------------------------------"
 echo "✅ Scaffolding Complete!"
-echo "Component: $COMPONENT_DIR"
-echo "Cluster App: $TARGET_DIR"
+echo "Target: clusters/$CLUSTER_NAME/$APP_NAME"
 echo "-------------------------------------------------------"
