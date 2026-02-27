@@ -18,7 +18,7 @@ spec:
     path: components/openshift-virtualization-instance
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    namespace: openshift-cnv
   syncPolicy:
     automated: { prune: true, selfHeal: true }
     retry:

@@ -18,7 +18,7 @@ spec:
     path: clusters/cluster-pq7kv/openshift-virtualization-operator
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-gitops
+    namespace: open-cluster-management-policies
   syncPolicy:
     automated: { prune: true, selfHeal: true }
     retry:
