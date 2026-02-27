@@ -40,13 +40,14 @@ This repository uses OpenShift GitOps (ArgoCD) and Kustomize to manage cluster c
 To onboard a brand new cluster to this framework:
 
 1. ACM Registration: Import the cluster into ACM
-2. Create Directory: mkdir -p clusters/<new-cluster-name>
+2. Create Directory: mkdir -p clusters/<new-cluster-name> # Alternately, copy/paste from similar cluster
 3. Initialize AppProjects: Copy appprojects.yaml from an existing cluster into the new folder.
-4. Create Root Kustomization: Create clusters/<new-cluster-name>/kustomization.yaml:
+4.- Create Root Kustomization: Create clusters/<new-cluster-name>/kustomization.yaml:
    apiVersion: kustomize.config.k8s.io/v1beta1
    kind: Kustomization
    resources:
      - appprojects.yaml
+
 5. Bootstrap GitOps:
    export CLUSTER_NAME="<new-cluster-name>"
    envsubst < .bootstrap/root-application.yaml | oc apply -f -

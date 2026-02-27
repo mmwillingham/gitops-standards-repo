@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-bootstrap
+  name: 0-root-bootstrap
   namespace: openshift-gitops
 spec:
   project: default
