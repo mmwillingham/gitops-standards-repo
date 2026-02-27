@@ -26,7 +26,6 @@ spec:
     channel: stable
     name: kubevirt-hyperconverged
     namespace: openshift-cnv
-    installPlanApproval: Automatic
     source: redhat-operators
     sourceNamespace: openshift-marketplace
     startingCSV: PATCHME

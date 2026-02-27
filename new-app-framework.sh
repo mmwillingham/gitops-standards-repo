@@ -76,8 +76,10 @@ spec:
   complianceType: musthave
   upgradeApproval: Automatic
   subscription:
-    installPlanApproval: Automatic # Force Automatic to avoid manual IP blocks
     channel: stable
+    name: REPLACE_ME
+    source: redhat-operators
+    sourceNamespace: openshift-marketplace
     startingCSV: REPLACE_ME
 EOF
 else
@@ -134,7 +136,7 @@ if [ -f "$CLUSTER_KUSTOMIZATION" ]; then
     fi
 fi
 
-# Determine file name for summary
+# Summary
 if [ "$TYPE" == "operator" ]; then BASE_FILE="operator-policy.yaml"; else BASE_FILE="instance.yaml"; fi
 
 echo "-------------------------------------------------------"

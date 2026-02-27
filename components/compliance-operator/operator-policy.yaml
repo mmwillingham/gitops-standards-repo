@@ -21,7 +21,6 @@ spec:
     channel: CHANNEL # This is the placeholder we will patch
     name: compliance-operator
     namespace: openshift-compliance
-    installPlanApproval: Automatic
     source: redhat-operators
     sourceNamespace: openshift-marketplace
     startingCSV: compliance-operator.v1.8.2
