@@ -18,7 +18,15 @@ metadata:
 spec:
   description: "Virtualization Workloads"
   clusterResourceWhitelist: [{group: '*', kind: '*'}]
-  destinations: [{namespace: 'openshift-virt-*', server: 'https://kubernetes.default.svc'}]
+  destinations:
+    - namespace: 'openshift-virt-*'
+      server: https://kubernetes.default.svc
+    - namespace: 'openshift-cnv'
+      server: https://kubernetes.default.svc
+    - namespace: 'open-cluster-management-policies'
+      server: https://kubernetes.default.svc
+    - namespace: 'openshift-workload-availability'
+      server: https://kubernetes.default.svc
   sourceRepos: ['https://github.com/mmwillingham/gitops-standards-repo']
   roles:
   - name: virt-admins
