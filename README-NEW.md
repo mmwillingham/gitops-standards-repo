@@ -4,7 +4,7 @@ This repository uses OpenShift GitOps (ArgoCD) and Kustomize to manage cluster c
 
 ## Repository Structure
 
-* .bootstrap/: Contains the manual bootstrap manifest used to link a new cluster to this repository.
+* bootstrap/: Contains the manual bootstrap manifest used to link a new cluster to this repository.
 * components/: These are generic versions of operators and policies. Do not edit files here directly.
 * clusters/: Each folder represents a specific cluster's configuration.
     * kustomization.yaml: This file controls which applications are active on the cluster.
@@ -47,7 +47,7 @@ Once you git commit and push, ArgoCD will automatically detect the new file and 
 
 This repository uses a parent-child relationship to make management easy:
 
-1. The Root Tile (cluster-root): This is managed by the file in .bootstrap/. It watches your clusters/<cluster-name>/ folder.
+1. The Root Tile (cluster-root): This is managed by the file in bootstrap/. It watches your clusters/<cluster-name>/ folder.
 2. The Child Tiles: Any Application manifest found in your cluster folder becomes its own independent tile in the ArgoCD console.
 
 ---
@@ -72,4 +72,4 @@ This repository uses a parent-child relationship to make management easy:
 ## Bootstrap a New Cluster
 To connect a brand new cluster to this repo:
 1. export CLUSTER_NAME="your-cluster-id"
-2. envsubst < .bootstrap/root-application.yaml | oc apply -f -
+2. envsubst < bootstrap/root-application.yaml | oc apply -f -

@@ -46,18 +46,18 @@ cd ${GITOPS_REPO_PATH}
 
 # Install GitOps
 # Make sure you have already created clusters/<clustername>
-oc apply -f .bootstrap/subscription.yaml
-oc apply -f .bootstrap/cluster-rolebinding.yaml
+oc apply -f bootstrap/subscription.yaml
+oc apply -f bootstrap/cluster-rolebinding.yaml
 sleep 90
 oc get pods -n openshift-gitops
 oc get pods -n openshift-gitops-operator
 oc get argocd -n openshift-gitops
-envsubst < .bootstrap/argocd.yaml | oc apply -f -
+envsubst < bootstrap/argocd.yaml | oc apply -f -
 sleep 30
-oc apply -f .bootstrap/appprojects.yaml
+oc apply -f bootstrap/appprojects.yaml
 
 # Install root-application
-#envsubst < .bootstrap/root-application.yaml | oc apply -f -
+#envsubst < bootstrap/root-application.yaml | oc apply -f -
 
 # 1. Apply the Project first (so the AppSet doesn't error out)
 oc apply -f root-app/appproject.yaml
@@ -66,7 +66,7 @@ oc apply -f root-app/appproject.yaml
 envsubst < root-app/root-app-set.yaml | oc apply -f -
 
 # 3. Apply the Root Application manually
-oc apply -f .bootstrap/root-application.yaml
+oc apply -f bootstrap/root-application.yaml
 
 ```
 ####
