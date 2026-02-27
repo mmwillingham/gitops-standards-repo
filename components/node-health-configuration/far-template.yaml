@@ -1,7 +1,7 @@
 apiVersion: fence-agents-remediation.medik8s.io/v1alpha1
 kind: FenceAgentsRemediationTemplate
 metadata:
-  name: far-template-sandbox
+  name: far-template-mycluster01
   namespace: openshift-workload-availability
 spec:
   template:
