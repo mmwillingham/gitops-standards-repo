@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:  
-  name: node-health-check-operator
+  name: node-healthcheck-operator
   namespace: openshift-gitops
   labels:
     appgrp: day2
@@ -12,7 +12,7 @@ spec:
     server: https://kubernetes.default.svc
   project: virt
   source:
-    path: components/node-health-check-operator
+    path: components/node-healthcheck-operator
     repoURL: https://github.com/mmwillingham/gitops-standards-repo
     targetRevision: HEAD
   syncPolicy:

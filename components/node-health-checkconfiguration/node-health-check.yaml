@@ -1,7 +1,7 @@
 apiVersion: remediation.medik8s.io/v1alpha1
 kind: NodeHealthCheck
 metadata:
-  name: worker-health-check
+  name: worker-healthcheck
 spec:
   remediationTemplate:
     apiVersion: 'fence-agents-remediation.medik8s.io/v1alpha1'
@@ -28,7 +28,7 @@ spec:
 apiVersion: remediation.medik8s.io/v1alpha1
 kind: NodeHealthCheck
 metadata:
-  name: control-plane-health-check
+  name: control-plane-healthcheck
 spec:
   remediationTemplate:
     apiVersion: 'fence-agents-remediation.medik8s.io/v1alpha1'
