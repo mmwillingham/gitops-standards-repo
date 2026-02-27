@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# Usage: ./new-app-framework.sh <app-name> <cluster-name> <type: operator|instance>
+# Usage: ./new-app-framework.sh <app-name> <cluster-name> <type: operator|instance> [wave]
 APP_NAME=$1
 TARGET_CLUSTER_NAME=$2
 TYPE=$3
+WAVE=${4:-0} # Defaults to 0 if not specified
 
 # 0. Validation
 if [[ -z "$APP_NAME" || -z "$TARGET_CLUSTER_NAME" || -z "$TYPE" ]]; then
-    echo "Usage: ./new-app-framework.sh <app-name> <cluster-name> <operator|instance>"
+    echo "Usage: ./new-app-framework.sh <app-name> <cluster-name> <operator|instance> [wave]"
     exit 1
 fi
 
@@ -27,7 +28,7 @@ APP_YAML_FILE="$APP_NAME-app.yaml"
 APP_YAML_PATH="clusters/$TARGET_CLUSTER_NAME/$APP_YAML_FILE"
 REPO_URL=$(git config --get remote.origin.url || echo "https://github.com/mmwillingham/gitops-standards-repo")
 
-echo "--- Scaffolding $APP_NAME ($TYPE) for Cluster: $TARGET_CLUSTER_NAME ---"
+echo "--- Scaffolding $APP_NAME ($TYPE) for Cluster: $TARGET_CLUSTER_NAME (Wave: $WAVE) ---"
 
 # 1. Ensure the Component (Base) exists
 if [ ! -d "$COMPONENT_DIR" ]; then
@@ -85,13 +86,15 @@ data:
 EOF
 fi
 
-# 3. Create the ArgoCD Application Tile (With Finalizer)
+# 3. Create the ArgoCD Application Tile (With Wave, Finalizer, and Retry)
 cat <<EOF > "$APP_YAML_PATH"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: $APP_NAME
   namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "$WAVE"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -104,7 +107,15 @@ spec:
     server: https://kubernetes.default.svc
     namespace: openshift-gitops
   syncPolicy:
-    automated: { prune: true, selfHeal: true }
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
 EOF
 
 # 4. Automatically register in the cluster's main kustomization
@@ -126,13 +137,12 @@ echo "-------------------------------------------------------"
 echo "THE FOLLOWING FILES WERE CREATED/UPDATED:"
 echo "  [Folder] $COMPONENT_DIR"
 echo "  [File]   $COMPONENT_DIR/kustomization.yaml"
-echo "  [File]   $COMPONENT_DIR/namespace.yaml"
-echo "  [File]   $COMPONENT_DIR/$BASE_FILE"
+echo "  [File]   [File]   $COMPONENT_DIR/$BASE_FILE"
 echo ""
 echo "  [Folder] $TARGET_DIR"
 echo "  [File]   $TARGET_DIR/kustomization.yaml"
 echo "  [File]   $TARGET_DIR/patches/custom-patch.yaml"
 echo ""
-echo "  [File]   $APP_YAML_PATH"
+echo "  [File]   $APP_YAML_PATH (Wave: $WAVE)"
 echo "  [Update] $CLUSTER_KUSTOMIZATION"
 echo "-------------------------------------------------------"
