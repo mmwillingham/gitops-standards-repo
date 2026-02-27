@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openshift-virtualization-operator
+  namespace: openshift-gitops
+spec:
+  project: cluster-config
+  source:
+    repoURL: https://github.com/mmwillingham/gitops-standards-repo
+    targetRevision: HEAD
+    path: clusters/cluster-pq7kv/openshift-virtualization-operator
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openshift-gitops
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
