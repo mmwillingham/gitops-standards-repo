@@ -7,7 +7,7 @@ This repository uses OpenShift GitOps (ArgoCD) and Kustomize to manage cluster c
 * The policy-framework add-on must be healthy on the managed cluster to support OperatorPolicies.
 
 ## Repository Structure
-* .bootstrap/: Contains the manual starter manifest used to link a new cluster to this repository.
+* bootstrap/: Contains the manual starter manifest used to link a new cluster to this repository.
 * components/: Generic versions of operators and policies. Do not edit directly.
 * clusters/: Each folder represents a specific cluster configuration.
     * kustomization.yaml: Controls which applications are active.
@@ -37,20 +37,20 @@ This repository uses OpenShift GitOps (ArgoCD) and Kustomize to manage cluster c
 
 ## Adding a New Cluster
 
-To onboard a new cluster to this framework:
+To onboard a brand new cluster to this framework:
 
-1. ACM Registration: Import the cluster into ACM
-2. Create Directory: mkdir -p clusters/<new-cluster-name> # Alternately, copy/paste from similar cluster
+1. ACM Registration: Import the cluster into ACM.
+2. Create Directory: mkdir -p clusters/<new-cluster-name>
 3. Initialize AppProjects: Copy appprojects.yaml from an existing cluster into the new folder.
-4.- Create Root Kustomization: Create clusters/<new-cluster-name>/kustomization.yaml:
+4. Create Root Kustomization: Create clusters/<new-cluster-name>/kustomization.yaml:
    apiVersion: kustomize.config.k8s.io/v1beta1
    kind: Kustomization
    resources:
      - appprojects.yaml
-
-5. Bootstrap GitOps:
+5. **CRITICAL STEP (Path Validation)**: If copying existing <app>-app.yaml files to the new cluster folder, you MUST update the 'spec.source.path' in each file to match the new cluster directory name.
+6. Bootstrap GitOps:
    export CLUSTER_NAME="<new-cluster-name>"
-   envsubst < .bootstrap/root-application.yaml | oc apply -f -
+   envsubst < bootstrap/root-application.yaml | oc apply -f -
 
 ---
 
@@ -61,4 +61,5 @@ To onboard a new cluster to this framework:
 | OperatorPolicy not found | Cluster is not in ACM or Policy Add-on is not installed. |
 | Sync Timeout / Namespace Error | DO NOT use a global namespace: in the app kustomization. |
 | Patch not applying | Ensure namespace and kind in the patch match the component exactly. |
+| App pulling wrong cluster's data | Check the 'spec.source.path' in the <app>-app.yaml manifest. |
 | New tile not appearing | Ensure the -app.yaml file is listed in the cluster kustomization. |

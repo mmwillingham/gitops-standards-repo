@@ -52,6 +52,7 @@ sleep 90
 oc get pods -n openshift-gitops
 oc get pods -n openshift-gitops-operator
 oc get argocd -n openshift-gitops
+# Don't proceed until the above are complete
 envsubst < bootstrap/argocd.yaml | oc apply -f -
 
 # Install root-application
