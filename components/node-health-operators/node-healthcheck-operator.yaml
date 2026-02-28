@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "5" # This should be created after the operator group
 spec:
-  upgradeApproval: None
+  upgradeApproval: Automatic
   complianceConfig:
     catalogSourceUnhealthy: Compliant
     deploymentsUnavailable: NonCompliant
@@ -28,7 +28,7 @@ spec:
     startingCSV: PATCHME
   versions: 
     - node-healthcheck-operator.v0.10.1
-    - node-healthcheck-operator.v0.10.0
+
 ---
 # This removes the troublesome plugin
 # apiVersion: policy.open-cluster-management.io/v1
