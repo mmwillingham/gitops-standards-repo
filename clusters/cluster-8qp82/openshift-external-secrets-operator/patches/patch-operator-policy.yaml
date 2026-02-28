@@ -1,0 +1,8 @@
+apiVersion: policy.open-cluster-management.io/v1beta1
+kind: OperatorPolicy
+metadata:
+  name: external-secrets-operator
+  namespace: open-cluster-management-policies
+spec:
+  subscription:
+    startingCSV: external-secrets-operator.v1.0.0  

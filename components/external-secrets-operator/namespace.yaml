@@ -7,4 +7,4 @@ metadata:
   labels:
     openshift.io/cluster-monitoring: "true"
     argocd.argoproj.io/managed-by: openshift-gitops
-  name: openshift-external-secrets-operator
+  name: external-secrets-operator

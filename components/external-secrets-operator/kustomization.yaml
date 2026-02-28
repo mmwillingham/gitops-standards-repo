@@ -7,4 +7,4 @@ commonAnnotations:
 
 resources:
   - namespace.yaml
-  - openshift-external-secrets-operator.yaml
+  - external-secrets-operator.yaml
