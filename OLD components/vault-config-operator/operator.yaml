@@ -2,6 +2,6 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: vault-config-operator 
-  namespace: vault-config-operator 
+  name: vault-config-operator
+  namespace: vault-config-operator
 spec: {}

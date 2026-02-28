@@ -46,4 +46,4 @@ subjects:
   namespace: kube-ops-view
 - kind: ServiceAccount
   name: kube-ops-view
-  namespace: kube-ops-view  
+  namespace: kube-ops-view

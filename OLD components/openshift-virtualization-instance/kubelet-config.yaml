@@ -18,4 +18,4 @@ spec:
       memory.available: "5m"
     evictionPressureTransitionPeriod: 0s
     # disabled because not gitops friendly
-#    failSwapOn: false    
+#    failSwapOn: false

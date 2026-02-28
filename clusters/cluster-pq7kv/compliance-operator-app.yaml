@@ -4,7 +4,7 @@ metadata:
   name: compliance-operator
   namespace: openshift-gitops
   annotations:
-    argocd.argoproj.io/sync-wave: "0"  
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
   source:
@@ -21,4 +21,4 @@ spec:
       backoff:
         duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
         factor: 2 # a factor to multiply the base duration after each failed retry
-        maxDuration: 3m # the maximum amount of time allowed for the backoff strategy       
+        maxDuration: 3m # the maximum amount of time allowed for the backoff strategy

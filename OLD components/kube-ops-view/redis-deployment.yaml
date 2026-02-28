@@ -40,7 +40,7 @@ spec:
           runAsUser: 999
         volumeMounts:
         - mountPath: /data
-          name: cache-volume          
+          name: cache-volume
       volumes:
       - name: cache-volume
-        emptyDir: {}          
+        emptyDir: {}

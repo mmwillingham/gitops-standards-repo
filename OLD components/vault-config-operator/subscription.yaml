@@ -2,12 +2,12 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: vault-config-operator 
-  namespace: vault-config-operator 
+  name: vault-config-operator
+  namespace: vault-config-operator
 spec:
   channel: <REPLACE>
   installPlanApproval: Automatic
-  name: vault-config-operator 
+  name: vault-config-operator
   source: community-operators
   sourceNamespace: openshift-marketplace
   config:

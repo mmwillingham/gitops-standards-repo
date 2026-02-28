@@ -26,5 +26,5 @@ spec:
     source: redhat-operators
     sourceNamespace: openshift-marketplace
     startingCSV: PATCHME
-  versions: 
+  versions:
     - PATCHME

@@ -29,5 +29,5 @@ spec:
     source: redhat-operators
     sourceNamespace: openshift-marketplace
     startingCSV: mtv-operator.v2.10.5
-  versions: 
+  versions:
     - mtv-operator.v2.10.5

@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - hyper-converged.yaml
   - kubelet-config.yaml
-  
+
   # Migration related
   # - v2v-configmap.yaml
   # - service-account-patch.yaml

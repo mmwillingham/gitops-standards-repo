@@ -21,7 +21,7 @@ spec:
     name: openshift-virtualization-og
     namespace: openshift-cnv
     targetNamespaces:
-      - openshift-cnv    
+      - openshift-cnv
   subscription:
     channel: stable
     name: kubevirt-hyperconverged
@@ -29,5 +29,5 @@ spec:
     source: redhat-operators
     sourceNamespace: openshift-marketplace
     startingCSV: PATCHME
-  versions: 
+  versions:
     - PATCHME

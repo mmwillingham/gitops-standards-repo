@@ -29,7 +29,7 @@ spec:
     source: redhat-operators
     sourceNamespace: openshift-marketplace
     startingCSV: clusterkubedescheduleroperator.v5.1.4
-  versions: 
+  versions:
     - clusterkubedescheduleroperator.v5.3.2
     - clusterkubedescheduleroperator.v5.1.2
     - clusterkubedescheduleroperator.v5.1.4

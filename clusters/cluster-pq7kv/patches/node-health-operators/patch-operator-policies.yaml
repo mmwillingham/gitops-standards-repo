@@ -7,7 +7,7 @@ spec:
   subscription:
     startingCSV: node-healthcheck-operator.v0.10.1
   versions:
-    - node-healthcheck-operator.v0.10.1   
+    - node-healthcheck-operator.v0.10.1
 ---
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy
@@ -18,7 +18,7 @@ spec:
   subscription:
     startingCSV: node-maintenance-operator.v5.5.0
   versions:
-    - node-maintenance-operator.v5.5.0    
+    - node-maintenance-operator.v5.5.0
 ---
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy

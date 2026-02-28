@@ -18,4 +18,3 @@ spec:
           namespace: openshift-workload-availability
         spec:
           targetNamespaces: [] # Node operators require All Namespaces
-            

@@ -26,7 +26,7 @@ spec:
     source: redhat-operators
     sourceNamespace: openshift-marketplace
     startingCSV: PATCHME
-  versions: 
+  versions:
     - PATCHME
 
 ---
@@ -37,7 +37,7 @@ spec:
 #   name: delete-remediation-plugin-resource
 #   namespace: open-cluster-management-policies
 # spec:
-#   remediationAction: enforce 
+#   remediationAction: enforce
 #   severity: medium
 #   object-templates:
 #     # 1. This deletes the actual ConsolePlugin object from the cluster
@@ -56,4 +56,4 @@ spec:
 #           name: cluster
 #         spec:
 #           plugins:
-#             - node-remediation-console-plugin    
+#             - node-remediation-console-plugin
