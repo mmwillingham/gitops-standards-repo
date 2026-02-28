@@ -15,7 +15,7 @@ spec:
     # path:
     # point to components/<component-name> if nothing needs to be patched
     # point to clusters/<cluster-name>/<component-name> to apply cluster specific patch
-    path: clusters/cluster-pq7kv/node-health-instances
+    path: clusters/cluster-pq7kv/patches/node-health-instances
   destination:
     server: https://kubernetes.default.svc
     namespace: open-cluster-management-policies
