@@ -7,7 +7,7 @@ spec:
   remediationAction: enforce
   severity: medium
   complianceType: musthave
-  upgradeApproval: Automatic
+  upgradeApproval: Manual
   complianceConfig:
     catalogSourceUnhealthy: Compliant
     deploymentsUnavailable: NonCompliant

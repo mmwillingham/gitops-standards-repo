@@ -7,4 +7,4 @@ commonAnnotations:
 
 resources:
   - namespace.yaml
-  - operator-policy.yaml
+  - compliance-operator.yaml

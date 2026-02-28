@@ -1,0 +1,13 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: OperatorPolicy
+metadata:
+  name: openshift-workload-availability
+spec:
+  remediationAction: enforce
+  complianceType: musthave
+  operatorGroup:
+    name: shared-workload-availability
+    namespace: openshift-workload-availability
+    spec:
+      targetNamespaces:
+        - openshift-workload-availability
