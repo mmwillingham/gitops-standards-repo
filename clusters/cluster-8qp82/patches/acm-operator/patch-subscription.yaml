@@ -1,8 +1,8 @@
-apiVersion: policy.open-cluster-management.io/v1beta1
-kind: OperatorPolicy
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
 metadata:
-  name: acm-operator
-  namespace: open-cluster-management-policies
+  name: advanced-cluster-management
+  namespace: open-cluster-management
 spec:
   channel: release-2.15  # This overrides the "CHANNEL" placeholder in base
   
