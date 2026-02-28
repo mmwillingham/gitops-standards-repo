@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openshift-virtualization-instance
+  name: acm-operator
   namespace: openshift-gitops
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "0"  
   finalizers:
-    - resources-finalizer.argocd.argoproj.io    
+    - resources-finalizer.argocd.argoproj.io  
 spec:
   project: default
   source:
@@ -15,10 +15,10 @@ spec:
     # path:
     # point to components/<component-name> if nothing needs to be patched
     # point to clusters/<cluster-name>/<component-name> to apply cluster specific patch
-    path: components/openshift-virtualization-instance
+    path: components/acm-operator
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-cnv
+    namespace: open-cluster-management
   syncPolicy:
     automated: { prune: true, selfHeal: true }
     retry:
@@ -26,4 +26,4 @@ spec:
       backoff:
         duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
         factor: 2 # a factor to multiply the base duration after each failed retry
-        maxDuration: 3m # the maximum amount of time allowed for the backoff strategy       
+        maxDuration: 3m # the maximum amount of time allowed for the backoff strategy   

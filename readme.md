@@ -18,7 +18,7 @@ export PLATFORM_BASE_DOMAIN=
 export CLUSTER_BASE_DOMAIN=<CLUSTER_NAME.PLATFORM_BASE_DOMAIN>
 export USERNAME="kubeadmin"
 export PASSWORD="<redacted>"
-export GITOPS_REPO="https://github.com/mmwillingham/gitops-standards-repo.git"
+export GITOPS_REPO="https://github.com/mmwillingham/gitops-standards-repo"
 export GITOPS_REPO_PATH="gitops-standards-repo"
 EOF
 cat prepare.env

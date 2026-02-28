@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - appprojects.yaml
+  - acm-operator.yaml
+  - acm-instance.yaml
+  - cluster-standards-app.yaml
+  # - compliance-operator-app.yaml
+  # - external-secrets-operator-app.yaml
+  # - openshift-virtualization-instance-app.yaml
+  # - openshift-virtualization-operator-app.yaml
+  # - node-health-operators-app.yaml
+  # - node-health-instances-app.yaml
+

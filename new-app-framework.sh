@@ -113,7 +113,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: cluster-config
+  project: default
   source:
     repoURL: $REPO_URL
     targetRevision: HEAD

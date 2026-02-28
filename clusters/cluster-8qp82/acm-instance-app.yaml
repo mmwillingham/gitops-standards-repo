@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openshift-virtualization-instance
+  name: acm-instance
   namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/sync-wave: "5"
@@ -15,10 +15,10 @@ spec:
     # path:
     # point to components/<component-name> if nothing needs to be patched
     # point to clusters/<cluster-name>/<component-name> to apply cluster specific patch
-    path: components/openshift-virtualization-instance
+    path: components/acm-instance
   destination:
     server: https://kubernetes.default.svc
-    namespace: openshift-cnv
+    namespace: open-cluster-management
   syncPolicy:
     automated: { prune: true, selfHeal: true }
     retry:

@@ -1,24 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openshift-virtualization-operator
+  name: OPERATOR_NAME-operator
   namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/sync-wave: "0"  
   finalizers:
     - resources-finalizer.argocd.argoproj.io  
 spec:
-  project: default
+
+  # For access only by cluster-admins--> project: default
+  # For access by virt-admins--> project: virt
+  project: PROJECT
   source:
     repoURL: https://github.com/mmwillingham/gitops-standards-repo
     targetRevision: HEAD
-    # path:
-    # point to components/<component-name> if nothing needs to be patched
-    # point to clusters/<cluster-name>/<component-name> to apply cluster specific patch
-    path: clusters/cluster-pq7kv/openshift-virtualization-operator
+
+    # If nothing to change--> path: components/<component-name>
+    # To adjust values for this cluster--> path: clusters/<cluster-name>/<component-name>
+    path: clusters/CLUSTER-NAME/openshift-virtualization-operator
   destination:
     server: https://kubernetes.default.svc
-    namespace: open-cluster-management-policies
+
+    # For OperatorPolicies--> namespace: open-cluster-management-policies
+    # For subscriptions--> namespace: <target namespaces>
+    namespace: NAMESPACE
   syncPolicy:
     automated: { prune: true, selfHeal: true }
     retry:

@@ -11,7 +11,7 @@ This repository uses OpenShift GitOps (ArgoCD) and Kustomize to manage cluster c
 * components/: Generic versions of operators and policies. Do not edit directly.
 * clusters/: Each folder represents a specific cluster configuration.
     * kustomization.yaml: Controls which applications are active.
-    * appprojects.yaml: Defines security boundaries (cluster-config, virt, hub).
+    * appprojects.yaml: Defines security boundaries (default, virt, hub).
 
 ---
 
