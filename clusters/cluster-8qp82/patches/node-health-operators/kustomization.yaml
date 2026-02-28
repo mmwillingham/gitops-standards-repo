@@ -5,5 +5,5 @@ resources:
   - ../../../components/node-health-operators
 
 patches:
-  - path: patches/patch-operator-policies.yaml
+  - path: patch-operator-policies.yaml
 

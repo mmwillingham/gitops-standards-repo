@@ -5,5 +5,5 @@ resources:
   - ../../../components/openshift-virtualization-operator
 
 patches:
-  - path: patches/patch-operator-policy.yaml
+  - path: patch-operator-policy.yaml
 
