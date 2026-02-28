@@ -3,8 +3,8 @@ kind: Kustomization
 
 resources:
   - appprojects.yaml
-  - acm-operator.yaml
-  - acm-instance.yaml
+  - acm-operator-app.yaml
+  - acm-instance-app.yaml
   - cluster-standards-app.yaml
   # - compliance-operator-app.yaml
   # - external-secrets-operator-app.yaml
