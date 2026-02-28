@@ -27,11 +27,11 @@ spec:
     targetNamespaces:
       - openshift-compliance
   subscription:
-    channel: CHANNEL # This is the placeholder we will patch
+    channel: PATCHME # This is the placeholder we will patch
     name: compliance-operator
     namespace: openshift-compliance
     source: redhat-operators
     sourceNamespace: openshift-marketplace
-    startingCSV: compliance-operator.v1.8.2
+    startingCSV: PATCHME
   versions:
-    - compliance-operator.v1.8.2
+    - PATCHME

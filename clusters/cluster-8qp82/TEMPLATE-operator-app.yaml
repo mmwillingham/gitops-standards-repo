@@ -17,8 +17,8 @@ spec:
     targetRevision: HEAD
 
     # If nothing to change--> path: components/<component-name>
-    # To adjust values for this cluster--> path: clusters/<cluster-name>/<component-name>
-    path: clusters/CLUSTER-NAME/openshift-virtualization-operator
+    # To adjust values for this cluster--> path: clusters/<cluster-name>/patches/<component-name>
+    path: clusters/CLUSTER-NAME/patches/openshift-virtualization-operator
   destination:
     server: https://kubernetes.default.svc
 

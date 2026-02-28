@@ -27,7 +27,7 @@ spec:
     sourceNamespace: openshift-marketplace
     startingCSV: PATCHME
   versions: 
-    - node-healthcheck-operator.v0.10.1
+    - PATCHME
 
 ---
 # This removes the troublesome plugin

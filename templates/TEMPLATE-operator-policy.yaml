@@ -35,5 +35,5 @@ spec:
     startingCSV: STARTING-CSV # For example: compliance-operator.v1.8.2
   versions:
   #   - LIST OF ALLOWED CSV VERSIONS. Identify with: oc get packagemanifest. Example:
-    - compliance-operator.v1.8.2
+    - STARTING-CSV
     - compliance-operator.v1.8.1

@@ -6,4 +6,6 @@ metadata:
 spec:
   subscription:
     channel: stable-v1
-    startingCSV: external-secrets-operator.v1.0.0  
+    startingCSV: external-secrets-operator.v1.0.0
+  versions:
+    - external-secrets-operator.v1.0.0

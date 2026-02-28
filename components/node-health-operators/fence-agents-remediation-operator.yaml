@@ -27,4 +27,4 @@ spec:
     sourceNamespace: openshift-marketplace
     startingCSV: PATCHME
   versions: 
-    - fence-agents-remediation.v0.6.0
+    - PATCHME

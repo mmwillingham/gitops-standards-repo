@@ -5,4 +5,7 @@ metadata:
   namespace: open-cluster-management-policies
 spec:
   subscription:
-    channel: stable  # This overrides the "CHANNEL" placeholder in base
+    channel: stable
+    startingCSV: compliance-operator.v1.8.2
+  versions:
+    - compliance-operator.v1.8.2

@@ -6,3 +6,5 @@ metadata:
 spec:
   subscription:
     startingCSV: kubevirt-hyperconverged-operator.v4.20.7 
+  versions:
+    - kubevirt-hyperconverged-operator.v4.20.7

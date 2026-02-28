@@ -30,11 +30,4 @@ spec:
     sourceNamespace: openshift-marketplace
     startingCSV: PATCHME
   versions: 
-    - kubevirt-hyperconverged-operator.v4.20.7
-    - kubevirt-hyperconverged-operator.v4.20.3
-    - kubevirt-hyperconverged-operator.v4.17.4
-    - kubevirt-hyperconverged-operator.v4.17.5
-    - kubevirt-hyperconverged-operator.v4.17.7
-    - kubevirt-hyperconverged-operator.v4.18.1
-    - kubevirt-hyperconverged-operator.v4.18.2
-    - kubevirt-hyperconverged-operator.v4.18.29
+    - PATCHME
