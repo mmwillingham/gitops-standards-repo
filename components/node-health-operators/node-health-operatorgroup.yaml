@@ -17,5 +17,5 @@ spec:
           name: shared-workload-availability
           namespace: openshift-workload-availability
         spec:
-          targetNamespaces:
-            - openshift-workload-availability
+          targetNamespaces: [] # Node operators require All Namespaces
+            
