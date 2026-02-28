@@ -27,7 +27,7 @@ This repository uses OpenShift GitOps (ArgoCD) and Kustomize to manage cluster c
 1. Create Directory: Create clusters/<cluster-name>/<app-name>/.
 2. Create Kustomization: Inside that folder, create a kustomization.yaml pointing to the base:
    resources:
-     - ../../../components/<app-name>
+     - ../../../../components/<app-name>
 3. Define Application: In the cluster root (clusters/<cluster-name>/), create <app-name>-app.yaml.
    - Ensure path points to your new directory.
    - Ensure project is set correctly.
