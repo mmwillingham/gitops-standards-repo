@@ -8,6 +8,5 @@ spec:
   operatorGroup:
     name: shared-workload-availability
     namespace: openshift-workload-availability
-    spec:
-      targetNamespaces:
-        - openshift-workload-availability
+    targetNamespaces:
+      - openshift-workload-availability

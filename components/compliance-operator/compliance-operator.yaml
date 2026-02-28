@@ -24,9 +24,8 @@ spec:
   operatorGroup:
     name: compliance-operator-group
     namespace: openshift-compliance
-    spec:
-      targetNamespaces:
-        - openshift-compliance
+    targetNamespaces:
+      - openshift-compliance
   subscription:
     channel: CHANNEL # This is the placeholder we will patch
     name: compliance-operator
