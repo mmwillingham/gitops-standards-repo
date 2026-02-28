@@ -7,7 +7,7 @@ resources:
   - openshift-virtualization-instance-app.yaml
   - openshift-virtualization-operator-app.yaml
   - compliance-operator-app.yaml
-  - external-secrets-operator-app.yaml
+#  - external-secrets-operator-app.yaml
   - node-health-operators-app.yaml
   - node-health-instances-app.yaml
 
