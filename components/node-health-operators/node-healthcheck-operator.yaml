@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "5" # This should be created after the operator group
 spec:
-  upgradeApproval: Automatic
+  upgradeApproval: None
   complianceConfig:
     catalogSourceUnhealthy: Compliant
     deploymentsUnavailable: NonCompliant
