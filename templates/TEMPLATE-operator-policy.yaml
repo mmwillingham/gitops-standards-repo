@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy
 metadata:
-  name: compliance-operator
+  name: <OPERATOR-NAME>-operator
   namespace: open-cluster-management-policies
 spec:
   remediationAction: enforce
@@ -23,16 +23,18 @@ spec:
   #   spec: {} # Empty spec means "All Namespaces"
   operatorGroup:
     name: compliance-operator-group
-    namespace: openshift-compliance
+    namespace: NAMESPACE
     spec:
       targetNamespaces:
-        - openshift-compliance
+        - NAMESPACE
   subscription:
     channel: CHANNEL # This is the placeholder we will patch
     name: compliance-operator
-    namespace: openshift-compliance
+    namespace: NAMESPACE
     source: redhat-operators
     sourceNamespace: openshift-marketplace
-    startingCSV: compliance-operator.v1.8.2
-  versions:
-    - compliance-operator.v1.8.2
+    startingCSV: STARTING-CSV # For example: compliance-operator.v1.8.2
+  # versions:
+  #   - LIST OF ALLOWED CSV VERSIONS. For example:
+  #   - compliance-operator.v1.8.2
+  #   - compliance-operator.v1.8.1
