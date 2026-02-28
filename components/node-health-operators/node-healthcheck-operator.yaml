@@ -4,7 +4,7 @@ metadata:
   name: node-healthcheck-operator
   namespace: open-cluster-management-policies
 spec:
-  upgradeApproval: Manual
+  upgradeApproval: Automatic
   complianceConfig:
     catalogSourceUnhealthy: Compliant
     deploymentsUnavailable: NonCompliant
@@ -23,10 +23,9 @@ spec:
     namespace: openshift-workload-availability
     source: redhat-operators
     sourceNamespace: openshift-marketplace
-    #startingCSV: node-healthcheck-operator.v0.10.1
     startingCSV: PATCHME
   versions: 
-    - node-healthcheck-operator.v0.10.1    
+    - node-healthcheck-operator.v0.10.0
 ---
 # This removes the troublesome plugin
 # apiVersion: policy.open-cluster-management.io/v1

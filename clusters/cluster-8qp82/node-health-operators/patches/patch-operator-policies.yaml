@@ -5,7 +5,7 @@ metadata:
   namespace: open-cluster-management-policies
 spec:
   subscription:
-    startingCSV: node-healthcheck-operator.v0.10.1
+    startingCSV: node-healthcheck-operator.v0.10.0
 ---
 apiVersion: policy.open-cluster-management.io/v1beta1
 kind: OperatorPolicy

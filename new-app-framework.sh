@@ -81,7 +81,7 @@ spec:
   remediationAction: enforce
   severity: high
   complianceType: musthave
-  upgradeApproval: Manual
+  upgradeApproval: Automatic
   subscription:
     channel: stable
     name: REPLACE_ME

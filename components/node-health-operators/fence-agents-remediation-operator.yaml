@@ -4,7 +4,7 @@ metadata:
   name: fence-agents-remediation-operator
   namespace: open-cluster-management-policies
 spec:
-  upgradeApproval: Manual
+  upgradeApproval: Automatic
   complianceConfig:
     catalogSourceUnhealthy: Compliant
     deploymentsUnavailable: NonCompliant
@@ -23,7 +23,6 @@ spec:
     namespace: openshift-workload-availability
     source: redhat-operators
     sourceNamespace: openshift-marketplace
-#    startingCSV: fence-agents-remediation.v0.6.0
     startingCSV: PATCHME
   versions: 
     - fence-agents-remediation.v0.6.0    
