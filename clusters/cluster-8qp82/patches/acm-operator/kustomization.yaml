@@ -5,5 +5,5 @@ resources:
   - ../../../components/acm-operator
 
 patches:
-  - path: patches/patch-subscription.yaml
+  - path: patch-subscription.yaml
 

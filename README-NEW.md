@@ -19,7 +19,7 @@ This repository uses OpenShift GitOps (ArgoCD) and Kustomize to manage cluster c
 
 ### Option A: Using the Framework Script
 1. Run: ./new-app-framework.sh <app-name>
-2. Configure patches in clusters/<cluster-name>/<app-name>/patches/
+2. Configure patches in clusters/<cluster-name>/patches/<app-name>
 3. Add the app to clusters/<cluster-name>/kustomization.yaml
 4. git commit and push.
 
