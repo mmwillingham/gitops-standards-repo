@@ -68,7 +68,7 @@ Check for Base: Does components/logging-operator exist? If not, create the base 
 Decide on Patching:
 No Patch? Create clusters/cluster-hqnl9/logging-app.yaml pointing to components/logging-operator.
 
-Need a Patch? Create a folder clusters/cluster-hqnl9/logging-operator/, add a kustomization.yaml and a patches/ folder, then create the logging-app.yaml pointing to that local folder.
+Need a Patch? Create a folder clusters/cluster-hqnl9/logging-operator/, add a kustomization.yaml and a overlays/ folder, then create the logging-app.yaml pointing to that local folder.
 
 Update Shopping List: Add - logging-app.yaml to the resources list in clusters/cluster-hqnl9/kustomization.yaml.
 

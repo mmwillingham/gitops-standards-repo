@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - ../../../../components/node-health-operators
 
-patches:
+overlays:
   - path: patch-operator-policies.yaml
 

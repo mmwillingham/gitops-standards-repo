@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - ../../../../components/node-health-instances
 
-patches:
+overlays:
   - path: patch-operator-instances.yaml
 
