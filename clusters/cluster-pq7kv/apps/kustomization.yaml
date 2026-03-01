@@ -4,12 +4,12 @@ kind: Kustomization
 resources:
   - appprojects.yaml
   - cluster-standards-app.yaml
-  - acm-operator-app.yaml
-  - acm-instance-app.yaml  
-  - openshift-virtualization-instance-app.yaml
-  - openshift-virtualization-operator-app.yaml
-# #  - compliance-operator-app.yaml
-# #  - external-secrets-operator-app.yaml
-  - node-health-operators-app.yaml
-  - node-health-instances-app.yaml
+  - acm/acm-operator-app.yaml
+  - acm/acm-instance-app.yaml
+  - openshift-virtualization/openshift-virtualization-instance-app.yaml
+  - openshift-virtualization/openshift-virtualization-operator-app.yaml
+# - compliance/compliance-operator-app.yaml
+# - external-secrets/external-secrets-operator-app.yaml
+  - node-health/node-health-operators-app.yaml
+  - node-health/node-health-instances-app.yaml
 

@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../../../components/openshift-virtualization-operator
+  - ../../../../../components/compliance/operator
 
-overlays:
+patches:
   - path: patch-operator-policy.yaml
 

@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../../../components/external-secrets-operator
+  - ../../../../../components/external-secrets/operator
 
-overlays:
+patches:
   - path: patch-operator-policy.yaml
 
