@@ -5,5 +5,5 @@ resources:
   - ../../../../../components/node-health/instance
 
 patches:
-  - path: patch-operator-instances.yaml
+  - path: patch-operator-instance.yaml
 

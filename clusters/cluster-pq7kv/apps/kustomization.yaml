@@ -11,5 +11,5 @@ resources:
 # - compliance/compliance-operator-app.yaml
 # - external-secrets/external-secrets-operator-app.yaml
   - node-health/node-health-operators-app.yaml
-  - node-health/node-health-instances-app.yaml
+  - node-health/node-health-instance-app.yaml
 
