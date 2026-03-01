@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - appprojects.yaml
-  - cluster-standards-app.yaml
+  - cluster-config/cluster-config-app.yaml
   - acm/acm-operator-app.yaml
   - acm/acm-instance-app.yaml
   - openshift-virtualization/openshift-virtualization-instance-app.yaml
